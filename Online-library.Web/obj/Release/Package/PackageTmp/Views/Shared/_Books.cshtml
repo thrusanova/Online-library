@@ -1,0 +1,41 @@
+﻿@model PagedList.IPagedList<Online_library.Web.Models.BookViewModel>
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+<h2 class="book-group-heading">Books</h2>
+
+@using (Html.BeginForm("Index", "Home", FormMethod.Get))//TO DO
+{
+    <p>
+        Find by name,author or genre: @Html.TextBox("searchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Search" class="btn btn-warning" />
+    </p>
+}
+
+   
+        @foreach (var item in Model)
+            {
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="book-box">
+                    <h3> @Html.DisplayFor(modelItem => item.Title)   </h3>
+
+                    <div class="author">
+                        @Html.DisplayFor(modelItem => item.Author)
+                    </div>
+                    <div class="genre">
+                        @Html.DisplayFor(modelItem => item.Genre)
+                    </div>
+                    <div id="book-details-@item.Id">
+                        @Ajax.ActionLink("Details", "BookDetailsById", "Home", new { id = item.Id },
+         new AjaxOptions
+         {
+             InsertionMode = InsertionMode.Replace,
+             UpdateTargetId = "book-details-" + item.Id
+         }, new { @class = "btn btn-warning" })
+                    </div>
+                </div>
+                </div>
+            }
+<hr/>
+
+
+        
+    

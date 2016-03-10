@@ -1,0 +1,12 @@
+﻿@model Online_library.Web.Models.BookInputModel
+
+@{
+    ViewBag.Title = "Add New Book";
+}
+
+<hr/>
+@Html.Partial("_BooksEditorForm")
+
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    }

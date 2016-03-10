@@ -1,0 +1,16 @@
+﻿@model PagedList.PagedList<Online_library.Web.Models.BookViewModel>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "My Books";
+}
+
+@Html.Partial("_Books")
+
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page }))
+@section scripts {
+    @Scripts.Render("~/bundles/ajax")
+}

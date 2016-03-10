@@ -1,0 +1,16 @@
+﻿@model Online_library.Web.Models.BookViewModel
+<div class="col-md-4 col-sm-6 col-xs-12">
+    <div class="book-box">
+       <h3>@Model.Title</h3>
+        <div class="author">Model.Author</div>
+        <div class="genre">@Model.Genre</div>
+      <div id="book-details-@Model.Id">
+          @Ajax.ActionLink("Details", "BookDetailsById","Home",new { id=Model.Id },
+         new AjaxOptions
+         {
+             InsertionMode=InsertionMode.Replace,
+             UpdateTargetId="book-details-"+Model.Id
+         },new { @class = "btn btn-warning" })
+      </div>
+    </div>
+</div>
